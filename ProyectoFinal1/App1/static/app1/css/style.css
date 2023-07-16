@@ -1,0 +1,58 @@
+.navText{
+    color: rgb(41, 40, 40) !important;
+}
+
+.contenido{
+    margin-top: 100px !important;
+    padding: 20px;
+}
+
+#tituloTablaUsuarios{
+    background-color: rgb(34, 34, 34);
+    color: white;
+}
+
+#tituloTablaUsuarios th{
+    padding: 10px;
+}
+
+#tableInfoUsuarios tr th{
+    padding-right: 120px;
+}
+.btnEliminar a{
+    border-radius: 15px !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.containerForm{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: absolute !important;
+    height: 100% !important;
+    width: 100% !important;
+    background-image: url("../assets/img/bombardero1.jpg");
+}
+
+.formLogin{
+    font-weight: bold;
+    background: linear-gradient(45deg, rgba(115, 0, 138, 0.527) 0%, rgba(124, 2, 98, 0.685) 100%);
+    padding: 40px 20px 20px 20px;
+    border-radius: 5px;
+    width: 350px;
+    height: 400px;
+
+}
+.formLogin div{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputLogin{
+    border-radius: 5px;
+    border: 1px solid rebeccapurple;
+    width: 90%;
+}

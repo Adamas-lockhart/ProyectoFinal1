@@ -1,0 +1,35 @@
+<div>
+    {% extends "App1/inicio.html" %}
+    {% load static %}
+    
+        {% block contenidoQueCambia %}
+            <p>Usuarios Disponibles</p>
+            <table id="tableInfoUsuarios">
+                <tr id="tituloTablaUsuarios">
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Eliminar</th>
+                    <th>Editar</th>
+                </tr>
+                
+                    {% for Usuario in Usuarios%}
+                        <tr>
+                            <td>{{Usuario.nombre}}</td>
+                            <td>{{Usuario.apellido}}</td>
+                            <td>{{Usuario.email}}</td>
+                            <td><button class="btn btn-danger btnEliminar"><a href="{% url 'eliminarUsuario' Usuario.nombre %}">X</a></button></td>
+                            <td><button class="btn btn-warning btnEditar"><a href="{% url 'editarUsuario' Usuario.nombre %}">Editar</a></button></td>
+                        </tr>
+                    {% endfor %}  
+            </table>
+            <div class="formSetUsuario">
+                {% block setUsuario %}
+                {% endblock %}
+            </div>          
+            <div class="formGetUsuario">
+                {% block getUsuario %}
+                {% endblock %}
+            </div>          
+        {% endblock %}
+</div>
