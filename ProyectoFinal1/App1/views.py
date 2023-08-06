@@ -17,22 +17,21 @@ def inicio(request):
     avatar = getavatar(request)
     return render(request, "App1/inicio.html", {"avatar": avatar})
 
-def Usuarios(request):
-    Usuarios = Usuarios.objects.all()
-    return render(request, "App1/Usuarios.html",{"Usuarios": Usuarios})
+def Usuario(request):
+    Usuario = Usuario.objects.all()
+    return render(request, "App1/Usuarios.html",{"Usuarios": Usuario})
 
 @login_required
 def setUsuarios(request):
-    Usuarios = Usuarios.objects.all()
-    
+    Usuario = Usuario.objects.all()
     if request.method == 'POST':
-        Usuarios = Usuarios(nombre=request.POST["nombre"],apellido=request.POST["apellido"], email=request.POST["email"])
-        Usuarios.save()  
+        Usuario = Usuario(nombre=request.POST["nombre"],apellido=request.POST["apellido"], email=request.POST["email"])
+        Usuario.save()  
         miFormulario = formSetUsuario()  
-        return render(request, "App1/setUsuarios.html", {"miFormulario":miFormulario, "Usuarios":Usuarios})
+        return render(request, "App1/setUsuarios.html", {"miFormulario":miFormulario, "Usuarios":Usuario})
     else:
         miFormulario = formSetUsuario()
-    return render(request, "App1/setUsuarios.html", {"miFormulario":miFormulario, "Usuarios":Usuarios})
+    return render(request, "App1/setUsuarios.html", {"miFormulario":miFormulario, "Usuarios":Usuario})
 
 def getUsuarios(request):
     return render(request, "App1/getUsuarios.html")
@@ -40,7 +39,7 @@ def getUsuarios(request):
 def buscarUsuarios(request):
     if request.GET["nombre"]:
         nombre = request.GET["nombre"]
-        Usuarios = Usuarios.objects.filter(nombre = nombre)
+        Usuario = Usuario.objects.filter(nombre = nombre)
         return render(request, "App1/getUsuarios.html", {"Usuarios":Usuarios, "key": "value"})
     else:
         respuesta = "No se enviaron datos"
@@ -48,29 +47,29 @@ def buscarUsuarios(request):
     return HttpResponse(respuesta)
 
 def eliminarUsuarios(request, nombre_Usuarios):
-    Usuarios = Usuarios.objects.get(nombre= nombre_Usuarios)
-    Usuarios.delete()
-    miFormulario = formSetUsuario()
-    Usuarios = Usuarios.objects.all()
-    return render(request, "App1/setUsuarios.html", {"miFormulario":miFormulario, "Usuarios":Usuarios})
+    Usuario = Usuario.objects.get(nombre= nombre_Usuarios)
+    Usuario.delete()
+    miFormulario = setUsuarios()
+    Usuario = Usuario.objects.all()
+    return render(request, "App1/setUsuarios.html", {"miFormulario":miFormulario, "Usuarios":Usuario})
 
 def editarUsuarios(request, nombre_Usuarios):
-    Usuarios = Usuarios.objects.get(nombre= nombre_Usuarios)
+    Usuario = Usuario.objects.get(nombre= nombre_Usuarios)
     if request.method == 'POST':
-        miFormulario = formSetUsuario(request.POST)
+        miFormulario = setUsuarios(request.POST)
         if miFormulario.is_valid:
             print(miFormulario)
             data = miFormulario.cleaned_data
 
-            Usuarios.nombre = data['nombre']
-            Usuarios.apellido = data['apellido']
-            Usuarios.email = data['email']
-            Usuarios.save()
+            Usuario.nombre = data['nombre']
+            Usuario.apellido = data['apellido']
+            Usuario.email = data['email']
+            Usuario.save()
             miFormulario = formSetUsuario()
-            Usuarios = Usuarios.objects.all()
-            return render(request, "App1/setUsuarios.html", {"miFormulario":miFormulario, "Usuarios":Usuarios})
+            Usuario = Usuario.objects.all()
+            return render(request, "App1/setUsuarios.html", {"miFormulario":miFormulario, "Usuarios":Usuario})
     else:
-        miFormulario = formSetUsuario(initial={'nombre': Usuarios.nombre, 'apellido': Usuarios.apellido, 'email': Usuarios.email})
+        miFormulario = formSetUsuario(initial={'nombre': Usuario.nombre, 'apellido': Usuario.apellido, 'email': Usuario.email})
     return render(request, "App1/editarUsuarios.html", {"miFormulario":miFormulario})
 
 def loginWeb(request):
@@ -91,7 +90,8 @@ def registro(request):
             userCreate.save()
             return render(request, 'App1/login.html')
     else:
-        return render(request, 'ProyectoFinal1/App1/templates/App1/registro.html')
+        return render(request, 'App1/registro.html')
+        #return render(request, 'ProyectoFinal1/App1/templates/App1/registro.html')
         #return render(request, 'App1/registro.html')
 
 @login_required  

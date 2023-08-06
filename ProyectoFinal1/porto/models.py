@@ -6,8 +6,8 @@ from django.db.models.fields.files import ImageField
 ####
 # Create your models here.
 
-class porto(models.Model):
+class blog(models.Model):
     titulo = models.CharField( max_length=150)
-    descripcion = models.CharField(max_length=1500)
-    imagenes = models.ImageField(upload_to='porto1/images')
+    descripcion = models.CharField(max_length=5500)
+    imagenes = models.ImageField(upload_to='porto/images/')
     url = models.URLField(blank=True)

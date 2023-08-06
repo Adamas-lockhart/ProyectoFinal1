@@ -19,11 +19,14 @@ from django.urls import path, include
 from App1.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from porto import views
+
 
 urlpatterns = [
     path('', include('App1.urls')),
     path('admin/', admin.site.urls),
-    path('App1/', include('App1.urls'))
+    path('App1/', include('App1.urls')),
+    path('', views.home ),
 ]
 
 urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

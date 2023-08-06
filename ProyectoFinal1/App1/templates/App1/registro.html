@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content=IE="edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link href="{% static 'App1/css/style.css'%}" rel="stylesheet"/>
@@ -26,8 +26,8 @@
                 <button class="btn btn-primary" type="submit">Registrar</button>
             </div>
             <!--<p style="color: white;">Ya tienes una cuenta? <a href="App1/login">Iniciar sesion</a></p> -->
-            <p style="color: white;">Ya tienes una cuenta? <a href="return render(request, 'App1/templates/App1/registro.html.html')
-                ">Iniciar sesion</a></p>
+            <!--<p style="color: white;">Ya tienes una cuenta? <a href="return render(request, 'App1/templates/App1/registro.html') -->
+            <p style="color: white;">Ya tienes una cuenta? <a href='/login/'>Iniciar sesion</a></p>
         </form>
     </div>
 </body>
